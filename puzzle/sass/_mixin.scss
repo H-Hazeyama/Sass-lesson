@@ -1,0 +1,9 @@
+@use 'variable' as var;
+
+@function getColor($class) {
+  $index_key: index(var.$classNames, $class);
+  @if $index_key {
+    @debug $index_key;
+    @return nth(var.$buttonColor, $index_key);
+  }
+}
