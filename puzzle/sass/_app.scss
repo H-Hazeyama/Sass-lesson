@@ -1,0 +1,95 @@
+@use 'variable' as var;
+@use 'mixin' as mix;
+
+.header {
+  background-color: var.$navy;
+  height: 100px;
+  width: 400px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  &__box {
+    height: 60px;
+    width: 160px;
+    margin: 20px;
+    background-color: var.$white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__list {
+      height: 40px;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      list-style: none;
+      flex-wrap: wrap;
+
+      & > li {
+        @each $class in var.$classNames {
+          & a.#{$class} {
+            height: 40px;
+            width: 40px;
+            background-color: mix.getColor($class);
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+}
+
+.container {
+  display: flex;
+}
+
+.sidebar {
+  background-color: var.$green;
+  height: 250px;
+  width: 150px;
+}
+
+.main {
+  background-color: var.$red;
+  height: 250px;
+  width: 250px;
+  position: relative;
+
+  &__box {
+    &__list {
+      width: 150px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: absolute;
+      top: 40px;
+      left: 40px;
+
+      & > li {
+        background-color: var.$white;
+        display: flex;
+
+        @each $class in var.$classNames {
+          & a.#{$class} {
+            height: 40px;
+            width: 140px;
+            background-color: mix.getColor($class);
+            margin: 5px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.footer {
+  background-color: var.$brown;
+  height: 100px;
+  width: 400px;
+}
